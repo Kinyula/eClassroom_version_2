@@ -19,11 +19,11 @@ class Document extends Model
     ];
 
     public function instructor(){
-        return $this->belongsTo(Instructors::class,'instructors_id');
+        return $this->belongsTo(Instructors::class,'instructors_id', 'id');
     }
 
     public function subjects(){
-        return $this->belongsTo(Subject::class);
+        return $this->belongsTo(Subject::class, 'subject_id', 'id');
     }
 
     public function semester(){
@@ -32,5 +32,9 @@ class Document extends Model
 
     public function year(){
         return $this->belongsTo(Year::class);
+    }
+
+    public function department(){
+        return $this->belongsTo(Department::class, 'department_id', 'id');
     }
 }

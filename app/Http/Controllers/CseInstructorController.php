@@ -39,17 +39,18 @@ class CseInstructorController extends Controller
         return back()->with(['documentAdded', $message]);
     }
     public function index(){
-        $departments = Department::get();
-        $years = Year::get();
-        $subjects = Subject::where('department_id', '2')->orWhereIn('subject_name' , [
-        'Information Technology','Communication Skills','Development Perspectives'
-        ,'Introduction to IT Security'])->get();
-        $semesters = Semester::get();
-        $instructors = Instructors::where('id', auth()->user()->instructors_id)->get();
+        // $departments = Department::get();
+        // $years = Year::get();
+        // $subjects = Subject::where('department_id', '2')->orWhereIn('subject_name' , [
+        // 'Information Technology','Communication Skills','Development Perspectives'
+        // ,'Introduction to IT Security'])->get();
+        // $semesters = Semester::get();
+        // $instructors = Instructors::where('id', auth()->user()->instructors_id)->get();
 
-        $documents = Document::with(['instructor','subjects','year'])->get();
+        // $documents = Document::with(['instructor','subjects','year'])->get();
         
-        return view('cse-instructor', compact('instructors','documents', 'semesters','subjects','departments','years'));
+        // return view('cse-instructor', compact('instructors','documents', 'semesters','subjects','departments','years'));
+        return view('cse-instructor');
     }
 
 }

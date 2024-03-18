@@ -14,11 +14,12 @@ class Year extends Model
         'status_description'
     ];
 
-    public function subjects(){
-        return $this->hasMany(Subject::class);
-    }
 
     public function documents(){
         return $this->hasMany(Document::class);
+    }
+
+    public function years(){
+        return $this->hasMany(Semester::class);
     }
 }

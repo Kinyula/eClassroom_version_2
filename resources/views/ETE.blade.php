@@ -2,30 +2,30 @@
     @extends('layouts/AuthLayout.frontendLayout');
 
     <main id="" class="main">
-    @if(Session::has("addedOperation"))
-  <div role="alert" class="alert alert-success alert-dismissible fade show">
-    <strong>{{ Session::get("addedOperation") }}</strong>
-    <button class="btn-close" data-bs-dismiss="alert"></button>
-  </div>
-  @endif
+
     <div class="card-body bg-white ETE-table w-100 p-5">
       <h2 class="p-5">Telecommunication Engineering Staffs</h2>
               <h5 class="card-title">Add staff <span>| Today</span></h5>
 
-
-
               <div class="row justify-content-center">
         <div class="col-md-0">
             <div class="card">
-              
-                 
-         
+
+
                 <div class="card-header" >
                 {{ __('Udom eClassroom version 2') }}
-                    
+
                 </div>
 
                 <div class="card-body">
+
+                    @if(Session::has("addedOperation"))
+                        <div role="alert" class="alert alert-success alert-dismissible fade show">
+                            <strong>{{ Session::get("addedOperation") }}</strong>
+                            <button class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    @endif
+
                     <form method="POST" action="{{ route('eteRoute') }}" class="w-100">
                         @csrf
                         <input type="hidden" value="5" name="role_id">
@@ -36,7 +36,7 @@
   <div class="form-floating">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
                                 <label for="" class="form-label">Email</label>
-                                
+
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -49,7 +49,7 @@
   <div class="form-floating">
                                 <input id="firstName" type="firstName" class="form-control @error('firstName') is-invalid @enderror" name="firstName" value="{{ old('firstName') }}" required autocomplete="firstName" placeholder="First name">
                                 <label for="" class="form-label">First name</label>
-                                
+
                                 @error('firstName')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -78,7 +78,7 @@
   <div class="form-floating">
                                 <input id="lastName" type="text" class="form-control @error('lastName') is-invalid @enderror" name="lastName" value="{{ old('lastName') }}" required autocomplete="lastName" placeholder="lastName">
                                 <label for="" class="form-label">Last name</label>
-                                
+
                                 @error('lastName')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -123,7 +123,7 @@
 
     </select>
     <label for="DepartmentId" class="form-label">Department id</label>
-    
+
     @error('departmentId')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -144,7 +144,7 @@
     </div>
   </div>
 
-  
+
 </div>
 
 
@@ -199,8 +199,17 @@
                         </div>
 </div>
 
+
   </div>
 
             </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+              </div>
+    </div>
+
     </main>
+
 @endsection

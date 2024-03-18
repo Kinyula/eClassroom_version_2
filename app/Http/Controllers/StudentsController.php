@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -10,14 +11,12 @@ use App\Models\Course;
 
 class StudentsController extends Controller
 {
-    
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-   
-
     }
 
     /**
@@ -33,44 +32,54 @@ class StudentsController extends Controller
     public function store(Request $request)
 
     {
-  
-     $validData = $request->validate( [
+
+        $validData = $request->validate([
 
 
-    'firstName' => ['required', 'string', 'max:255'],
-    'middleName' => ['required', 'string', 'max:255'],
-    'departmentName' => ['required', 'string', 'max:255'],
-    'lastName' => ['required', 'string', 'max:255'],
-    'email' => ['required', 'string', 'email', 'max:255', 'unique:students'],
-    'courseName' => ['required', 'string',  'max:255'],
-    'phoneNumber' => ['required', 'string',  'max:255'],
-    'password' => ['required', 'string', 'min:8', 'confirmed'],
-    'gender' => ['required', 'string',  'max:10'],
+            'firstName' => ['required', 'string', 'max:255'],
+            'middleName' => ['required', 'string', 'max:255'],
+            'departmentName' => ['required', 'string', 'max:255'],
+            'lastName' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'courseName' => ['required', 'string',  'max:255'],
+            'phoneNumber' => ['required', 'digits',  'max:10'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'gender' => ['required', 'string',  'max:10'],
 
-]);
-
-
-  $students = Student::create([
-            'first_name' => $request->input('firstName'),
-            'middle_name' => $request->input('middleName'),
-            'last_name' => $request->input('lastName'),
-            'email' => $request->input('email'),
-            'course_name' => $request->input('courseName'),
-            'department_name' => $request->input('departmentName'),
-            'phone_number' => $request->input('phoneNumber'),
-            'gender' =>$request->input('gender'),
-            'status' =>$request->input('status'),
         ]);
 
+        if ($validData) {
 
-        $students->user()->create([
-            
-        'role_id' => $request->input('role_id'),
-        'email' => $request->input('email'),
-        'password' => Hash::make($request->input('password'))]
-        );
+            $User = User::create([
 
-        return redirect('/register');
+                'role_id' => $request->input('role_id'),
+                'email' => $request->input('email'),
+                'password' => Hash::make($request->input('password'))
+
+
+            ]);
+
+
+            $User->student()->create(
+                [
+
+                    'first_name' => $request->input('firstName'),
+                    'middle_name' => $request->input('middleName'),
+                    'last_name' => $request->input('lastName'),
+                    'email' => $request->input('email'),
+                    'course_name' => $request->input('courseName'),
+                    'department_name' => $request->input('departmentName'),
+                    'phone_number' => $request->input('phoneNumber'),
+                    'gender' => $request->input('gender'),
+                    'status' => $request->input('status'),
+
+                ]
+            );
+        }
+
+
+
+        return redirect('/login');
     }
 
     /**
@@ -78,7 +87,6 @@ class StudentsController extends Controller
      */
     public function show(string $id)
     {
-        
     }
 
     /**
@@ -86,7 +94,6 @@ class StudentsController extends Controller
      */
     public function edit(string $id)
     {
-    
     }
 
     /**
@@ -94,7 +101,6 @@ class StudentsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        
     }
 
     /**
@@ -102,6 +108,5 @@ class StudentsController extends Controller
      */
     public function destroy(string $id)
     {
-        
     }
 }

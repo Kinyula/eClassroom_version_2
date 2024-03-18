@@ -34,4 +34,10 @@ class Department extends Model
     public function subjects(){
         return $this->hasMany(Subject::class);
     }
+
+    public function documents(){
+        return $this->hasMany(Document::class);
+    }
+
+    
 }

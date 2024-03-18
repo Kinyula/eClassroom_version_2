@@ -10,25 +10,23 @@ class Subject extends Model
     use HasFactory;
     protected $fillable = [
         'semester_id',
-        'year_id',
         'department_id',
         'subject_name',
         'subject_course_code'
     ];
 
-    public function semester(){
+    public function semester()
+    {
         return $this->belongsTo(Semester::class);
     }
 
-    public function years(){
-        return $this->belongsTo(Year::class);
-    }
-
-    public function department(){
+    public function department()
+    {
         return $this->belongsTo(Department::class);
     }
 
-    public function documents(){
+    public function documents()
+    {
         return $this->hasMany(Document::class);
     }
 }

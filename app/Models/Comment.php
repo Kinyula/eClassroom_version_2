@@ -10,7 +10,8 @@ class Comment extends Model
     use HasFactory;
     protected $fillable = [
         'instructors_id',
-        'instructor_comment'
+        'instructor_comment',
+        'department_id'
     ];
 
     public function instructor(){

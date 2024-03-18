@@ -17,6 +17,12 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
+
+
+
+    public const ETEINSTRUCTOR = '/ete-instructor';
+    public const CSEINSTRUCTOR = '/cse-instructor';
+    public const ISTINSTRUCTOR = '/ist-instructor';
     public const HOME = '/home';
     public const ADMIN = '/admin';
     public const LOGIN = '/login';

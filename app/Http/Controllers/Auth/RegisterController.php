@@ -34,95 +34,38 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::LOGIN;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
     public function __construct()
     {
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
+
     protected function validator(array $data)
     {
 
         return Validator::make($data, [
-            'username' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'firstName' => ['required', 'string', 'max:100'],
+            'middleName' => ['required', 'string', 'max:100'],
+            'lastName' => ['required', 'string', 'max:100'],
+            'email' => ['required|unique:users', 'string', 'email', 'max:255'],
             'course_name' => ['required', 'string',  'max:255'],
             'phone_number' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'gender' => ['required', 'string',  'max:10'],
         ]);
-        dd('done');
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
-    // protected function create(Request $request)
-    // {
 
-    //     Student::create([
-    //         'username' => $request->input('username'),
-    //         'email' => $request->input('email'),
-    //         'course_name' => $request->input('courseName'),
-    //         'phone_number' => $request->input('phoneNumber'),
-    //         'gender' =>$request->input('gender'),
-    //     ]);
+    public function showRegistrationForm()
+    {
 
-    //     User::create([
-    //         'role_id' => $request->input('role_id'),
-    //         'email' => $request->input('email'),
-    //         'password' => Hash::make($request->input('password')),
-    //     ]);
-    // }
-
-    public function showRegistrationForm(){
-
-        // $courses = Course::with('students')->get();
-        return view('auth.register',[
+        return view('auth.register', [
             'courses' => Course::all(),
-            'departments' => Department::all(),
+            'departments' => Department::get(),
+
         ]);
     }
-
-//     protected function create(Request $request) {
-//         dd("dhjabvshdbvk");
-//         $students = new Student();
-
-// foreach($students->all() as $student) {
-    
-
-//     if($student->email = $request->input('email')){
-//         return;
-//     }
-// }
-//  $students->username = $request->input('username');
-//     $students->email = $request->input('email');
-//     $students->password = $request->input('password');
-//     $students->phone_number = $request->input('phoneNumber');
-//     $students->course_name = $request->input('courseName');
-//     $students->gender = $request->input('gender');
-//     $students->save();
-
-//     $Users = new User();
-//     $Users->email = $request->input('email');
-//     $Users->password = $request->input('password');
-//     $Users->save();
-
-//  }
-
 }

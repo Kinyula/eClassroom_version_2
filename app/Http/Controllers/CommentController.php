@@ -15,9 +15,12 @@ class CommentController extends Controller
 
         $comment->instructor_comment = $request->input('comment');
         $comment->instructors_id = auth()->user()->instructors_id;
-    
+        $comment->depaartment_id = $request->input('department_id');
+
         $comment->save();
         $message = 'Comment added successfully!!';
         return back()->with('addedComment', $message);
     }
+
+
 }

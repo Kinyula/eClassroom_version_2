@@ -18,7 +18,7 @@ class eteController extends Controller
 
 
     $getDepartments = Department::get()->where('id', '1');
-    $getCourses = Course::get()->where('course_name', 'BSc.TELECOMMUNICATIONS ENGINEERING');
+    $getCourses = Course::get()->where('course_name', 'BSc.Telecommunications Engineering');
 
 
         return view('ETE', compact('getDepartments', 'getCourses'));
@@ -31,34 +31,34 @@ class eteController extends Controller
 
    
  
-$validData = $request->validate( [
-   'firstName' => ['required', 'string', 'max:255'],
-   'middleName' => ['required', 'string', 'max:255'],
-   'lastName' => ['required', 'string', 'max:255'],
-   'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-   'teachingCourse' => ['required', 'string',  'max:255'],
-   'departmentId' => ['required', 'integer'],
-   'phoneNumber' => ['required', 'string','max:255'],
-   'gender' => ['required', 'string',  'max:10'],
-]);
-    $instructors =   Instructors::create([
-           'first_name' =>$request->input('firstName'),
-           'middle_name' =>$request->input('middleName'),
-           'last_name' =>$request->input('lastName'),
-           'email' => $request->input('email'),
-           'status' => $request->input('status'),
-           'teaching_course_name' => $request->input('teachingCourse'),
-           'department_id' => $request->input('departmentId'),
-           'phone_number' => $request->input('phoneNumber'),
-           'gender' =>$request->input('gender'),
+    $validData = $request->validate( [
+        'firstName' => ['required', 'string', 'max:255'],
+        'middleName' => ['required', 'string', 'max:255'],
+        'lastName' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        'teachingCourse' => ['required', 'string',  'max:255'],
+        'departmentId' => ['required', 'integer'],
+        'phoneNumber' => ['required', 'string','max:255'],
+        'gender' => ['required', 'string',  'max:10'],
+     ]);
+         $User =   User::create([
+          'role_id' => $request->input('role_id'),
+          'email' => $request->input('email'),
+          'password' => Hash::make($request->input('password'))
+    
+            ]);
 
-       ]);
+       $User->instructor()->create([
 
-       $instructors->user()->create([
-            
-        'role_id' => $request->input('role_id'),
+        'first_name' =>$request->input('firstName'),
+        'middle_name' =>$request->input('middleName'),
+        'last_name' =>$request->input('lastName'),
         'email' => $request->input('email'),
-        'password' => Hash::make($request->input('password'))]
+        'teaching_course_name' => $request->input('teachingCourse'),
+        'department_id' => $request->input('departmentId'),
+        'status' =>$request->input('status'),
+        'phone_number' => $request->input('phoneNumber'),
+        'gender' =>$request->input('gender'),]
         );
 
 

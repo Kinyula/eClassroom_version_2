@@ -17,12 +17,12 @@
               <div class="row justify-content-center">
         <div class="col-md-0">
             <div class="card">
-              
-                 
-         
+
+
+
                 <div class="card-header" >
                 {{ __('Udom eClassroom version 2') }}
-                    
+
                 </div>
 
                 <div class="card-body">
@@ -48,7 +48,7 @@
   <div class="form-floating">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
                                 <label for="" class="form-label">Email</label>
-                                
+
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -76,7 +76,7 @@
   <div class="form-floating">
                                 <input id="lastName" type="text" class="form-control @error('lastName') is-invalid @enderror" name="lastName" value="{{ old('lastName') }}" required autocomplete="lastName" placeholder="Last Name">
                                 <label for="" class="form-label">Last Name</label>
-                                
+
                                 @error('lastName')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -90,7 +90,7 @@
   <div class="form-floating">
                                 <input id="firstName" type="firstName" class="form-control @error('firstName') is-invalid @enderror" name="firstName" value="{{ old('firstName') }}" required autocomplete="firstName" placeholder="First name">
                                 <label for="" class="form-label">First name</label>
-                                
+
                                 @error('firstName')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -102,7 +102,7 @@
   <div class="form-floating">
                                 <input id="lastName" type="text" class="form-control @error('lastName') is-invalid @enderror" name="lastName" value="{{ old('lastName') }}" required autocomplete="lastName" placeholder="lastName">
                                 <label for="" class="form-label">Last name</label>
-                                
+
                                 @error('lastName')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -126,7 +126,7 @@
 
     </select>
     <label for="DepartmentName" class="form-label">Department name</label>
-    
+
     @error('departmentName')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -147,10 +147,8 @@
     </div>
   </div>
 
-  
+
 </div>
-
-
 
 
 <div class="row g-2">

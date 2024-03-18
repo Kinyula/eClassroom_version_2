@@ -36,12 +36,43 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\LastUserActivity::class,
+
+
+
+
+
+
         ],
 
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        ],
+
+        'CseHodMiddleware' => [
+            \App\Http\Middleware\CseHodMiddleware::class,
+        ],
+
+        'EteHodMiddleware' => [
+            \App\Http\Middleware\EteHodMiddleware::class,
+        ],
+
+        'IstHodMiddleware' => [
+            \App\Http\Middleware\IstHodMiddleware::class,
+        ],
+
+        'CseInstructorMiddleware' => [
+            \App\Http\Middleware\CseInstructorMiddleware::class,
+        ],
+
+        'EteInstructorMiddleware' => [
+            \App\Http\Middleware\EteInstructorMiddleware::class,
+        ],
+
+        'IstInstructorMiddleware' => [
+            \App\Http\Middleware\IstInstructorMiddleware::class
         ],
     ];
 
@@ -64,5 +95,11 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'isAdmin' => \App\Http\Middleware\AdminMiddleware::class,
+        'cse-hod' => \App\Http\Middleware\CseHodMiddleware::class,
+        'ete-hod' => \App\Http\Middleware\EteHodMiddleware::class,
+        'ist-hod' => \App\Http\Middleware\IstHodMiddleware::class,
+        'cse-instructor' => \App\Http\Middleware\CseInstructorMiddleware::class,
+        'ete-instructor' => \App\Http\Middleware\EteInstructorMiddleware::class,
+        'ist-instructor' => \App\Http\Middleware\IstInstructorMiddleware::class,
     ];
 }

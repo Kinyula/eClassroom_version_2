@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('semester_id')->constrained('semesters')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('department_id')->constrained('departments')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('year_id')->constrained('years')->onDelete('cascade')->onUpdate('cascade');
             $table->string('subject_name');
             $table->string('subject_course_code');
             $table->timestamps();

@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('years', function (Blueprint $table) {
             $table->id();
-            $table->year('year_of_study');
             $table->string('status_description');
             $table->timestamps();
         });

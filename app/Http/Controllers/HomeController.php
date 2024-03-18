@@ -24,7 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $students = Student::where('id', auth()->user()->student_id)->get();
+        $students = Student::with(['student'])->where('id', auth()->user()->student_id)->first();
+
         return view('home',compact('students') );
     }
 
